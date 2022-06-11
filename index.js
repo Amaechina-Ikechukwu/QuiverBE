@@ -40,9 +40,9 @@ function generateAccessToken(username) {
 }
 app.get("/token", (req, res) => {
   const token = jwt.sign("Obi", secret);
-  res.status(200).json({ message: token }), res.send(JSON.stringify(token));
+  res.status(200).json({ message: token }), res.send("Hello World");
 });
-app.get("/", (req, res) => {
+app.get("/createRoom", (req, res) => {
   client.onReady = function () {
     var data = {
       userName: "Gordon",
@@ -66,7 +66,9 @@ app.get("/", (req, res) => {
       .catch((err) => res.json({ message: err }));
   };
 });
-
+app.get("/", (req, res) => {
+  res.send("Welcome to Quiver API");
+});
 generateAccessToken();
 
 server.listen(port, () => {
