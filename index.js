@@ -4,6 +4,7 @@ const ngrok = require("ngrok");
 const server = require("http").Server(app);
 var cors = require("cors");
 const port = 5000;
+const serverless = require("serverless-http");
 
 const jwt = require("jsonwebtoken");
 
@@ -74,3 +75,5 @@ generateAccessToken();
 server.listen(port, () => {
   console.log("This is Quiver");
 });
+
+module.exports.handler = serverless(app);
