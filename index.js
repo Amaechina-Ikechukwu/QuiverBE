@@ -5,6 +5,7 @@ const server = require("http").Server(app);
 var cors = require("cors");
 const port = 5000;
 const serverless = require("serverless-http");
+const router = express.Router();
 
 const jwt = require("jsonwebtoken");
 
@@ -39,11 +40,11 @@ function generateAccessToken(username) {
     expiresIn: "1800s",
   });
 }
-app.get("/token", (req, res) => {
+router.get("/token", (req, res) => {
   const token = jwt.sign("Obi", secret);
   res.status(200).json({ message: token }), res.send("Hello World");
 });
-app.get("/createRoom", (req, res) => {
+router.post("/createRoom", (req, res) => {
   client.onReady = function () {
     var data = {
       userName: "Gordon",
@@ -67,10 +68,11 @@ app.get("/createRoom", (req, res) => {
       .catch((err) => res.json({ message: err }));
   };
 });
-app.get("/", (req, res) => {
-  res.send("Welcome to Quiver API");
+router.get("/", (req, res) => {
+  res.json({ hey: "Welcome to Quiver API" });
 });
-generateAccessToken();
+
+app.use("/.netlify/functions/api", router);
 
 server.listen(port, () => {
   console.log("This is Quiver");
