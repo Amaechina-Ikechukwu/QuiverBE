@@ -11,12 +11,7 @@ require("dotenv").config();
 
 const VoximplantApiClient = require("@voximplant/apiclient-nodejs").default;
 const client = new VoximplantApiClient(
-  {
-  account_email: process.env.ACCOUNT_EMAIL,
-  account_id: process.env.ACCOUNT_ID,
-  key_id: process.env.KEY_ID,
-  private_key: process.env.PRIVATE_KEY,
-}
+ "../../credentials.json"
 );
 
 const secret =
