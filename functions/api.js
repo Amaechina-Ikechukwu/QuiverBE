@@ -7,10 +7,16 @@ const port = 5000;
 const serverless = require("serverless-http");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const VoximplantApiClient = require("@voximplant/apiclient-nodejs").default;
 const client = new VoximplantApiClient(
-  "/Users/LENOVO/projects/reactnative/quiver/backend/credentials.json"
+  {
+  account_email: process.env.ACCOUNT_EMAIL,
+  account_id: process.env.ACCOUNT_ID,
+  key_id: process.env.KEY_ID,
+  private_key: process.env.PRIVATE_KEY,
+}
 );
 
 const secret =
@@ -45,7 +51,7 @@ router.get("/createRoom", (req, res) => {
       .catch((err) => res.json({ message: err }));
   };
 });
-router.get("/", (req, res) => {
+router.get("./", (req, res) => {
   res.json({ hey: "Welcome to Quiver API" });
 });
 
