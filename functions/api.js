@@ -16,7 +16,7 @@ router.get("/token", (req, res) => {
   res.status(200).json({ message: token }), res.send("Hello World");
 });
 
-router.post("/createRoom", (req, res) => {
+router.get("/createRoom", (req, res) => {
   client.onReady = function () {
     var data = {
       userName: "Gordon",
