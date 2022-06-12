@@ -8,6 +8,11 @@ const serverless = require("serverless-http");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
+const VoximplantApiClient = require("@voximplant/apiclient-nodejs").default;
+const client = new VoximplantApiClient(
+  "/Users/LENOVO/projects/reactnative/quiver/backend/credentials.json"
+);
+
 const secret =
   "61E59E2084A97A210E20F58977490DC6931DE1296EBA5F7508A305A35A5B7A1D";
 
