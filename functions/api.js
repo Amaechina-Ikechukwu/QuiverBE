@@ -12,7 +12,7 @@ const secret =
   "61E59E2084A97A210E20F58977490DC6931DE1296EBA5F7508A305A35A5B7A1D";
 
 router.get("/token", (req, res) => {
-  const token = jwt.sign("Obi", secret);
+  const token = jwt.sign(req.body.name, secret);
   res.status(200).json({ message: token }), res.send("Hello World");
 });
 
