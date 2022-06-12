@@ -11,7 +11,7 @@ require("dotenv").config();
 
 const VoximplantApiClient = require("@voximplant/apiclient-nodejs").default;
 const client = new VoximplantApiClient(
- "../../credentials.json"
+ "https://github.com/Amaechina-Ikechukwu/QuiverBE/blob/backend/credentials.json"
 );
 
 const secret =
