@@ -7,12 +7,19 @@ const port = 5000;
 const serverless = require("serverless-http");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
+const VoximplantApiClient = require("@voximplant/apiclient-nodejs").default;
+const client = new VoximplantApiClient(
+  "/Users/LENOVO/projects/reactnative/quiver/backend/credentials.json"
+);
 const secret =
   "61E59E2084A97A210E20F58977490DC6931DE1296EBA5F7508A305A35A5B7A1D";
 
 router.get("/token", (req, res) => {
-  const token = jwt.sign("Obi", secret);
+  const token = jwt.sign({ name: req.body.name }, secret, {
+    expiresIn: 604800, // 1 week
+  });
   res.status(200).json({ message: token }), res.send("Hello World");
 });
 
