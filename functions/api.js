@@ -55,14 +55,14 @@ router.get("/createRoom", (req, res) => {
     try {
       client.Users.addUser(data)
         .then((ev) => console.log(ev))
-        .catch((err) => console.log(err, "catch err"), res.json("done"));
+        .catch((err) => console.log(err, "catch err"), res.send("done"));
     } catch (e) {
       console.log("catch", e);
     }
   };
 });
 router.get("/", (req, res) => {
-  res.json({ hey: "Welcome to Quiver API" });
+  res.send({ hey: "Welcome to Quiver API" });
 });
 
 app.use("/", router);
