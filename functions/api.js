@@ -11,7 +11,7 @@ require("dotenv").config();
 
 const VoximplantApiClient = require("@voximplant/apiclient-nodejs").default;
 
-const client = new VoximplantApiClient("/functions/credentials.json");
+const client = new VoximplantApiClient("QuiverBE/functions/credentials.json");
 
 const secret =
   "61E59E2084A97A210E20F58977490DC6931DE1296EBA5F7508A305A35A5B7A1D";
