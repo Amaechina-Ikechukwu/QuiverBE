@@ -8,6 +8,8 @@ const serverless = require("serverless-http");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+var fs = require("fs");
+var path = require("path");
 
 const VoximplantApiClient = require("@voximplant/apiclient-nodejs").default;
 
@@ -28,7 +30,9 @@ const client = new VoximplantApiClient("functions/credentials.json");
 
 router.get("/token", (req, res) => {
   const token = jwt.sign({ name: req.body.name }, secret);
-  res.status(200).json({ message: token });
+
+  // res.sendFile(path.join(__dirname, "/public/index.html"));
+  res.status(200).send(token);
   console.log("Done");
 });
 
