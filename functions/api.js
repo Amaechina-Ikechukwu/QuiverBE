@@ -29,6 +29,7 @@ const client = new VoximplantApiClient("functions/credentials.json");
 router.get("/token", (req, res) => {
   const token = jwt.sign({ name: req.body.name }, secret);
   res.status(200).json({ message: token });
+  console.log("Done");
 });
 
 router.get("/createRoom", (req, res) => {
