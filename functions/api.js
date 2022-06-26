@@ -26,7 +26,7 @@ var obj = {
 
 var buf = Buffer.from(JSON.stringify(obj));
 
-const client = new VoximplantApiClient("../credentials.json");
+const client = new VoximplantApiClient("/credentials.json");
 
 router.get("/token", (req, res) => {
   const token = jwt.sign({ name: req.body.name }, secret);
