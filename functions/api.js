@@ -26,7 +26,7 @@ var obj = {
 
 var buf = Buffer.from(JSON.stringify(obj));
 
-// const client = new VoximplantApiClient("/functions/credentials.json");
+const client = new VoximplantApiClient("./credentials.json");
 
 router.get("/token", (req, res) => {
   const token = jwt.sign({ name: req.body.name }, secret);
@@ -36,31 +36,31 @@ router.get("/token", (req, res) => {
   console.log("Done");
 });
 
-// router.get("/createRoom", (req, res) => {
-//   console.log(JSON.stringify(req.query.userName), "body");
-//   client.onReady = function () {
-//     var data = {
-//       userName: `${req.query.userName}`,
-//       userDisplayName: `${req.query.userDisplayName}`,
-//       userPassword: ` ${req.query.userPassword}`,
-//       applicationId: 10464912,
-//     };
-//     var dataa = {
-//       userName: "Gordonybsbs",
-//       userDisplayName: "Gordonyhsjs",
-//       userPassword: "1234567",
-//       applicationId: "10464912",
-//     };
-//     // Add a new user.
-//     try {
-//       client.Users.addUser(data)
-//         .then((ev) => console.log(ev))
-//         .catch((err) => console.log(err, "catch err"), res.send("done"));
-//     } catch (e) {
-//       console.log("catch", e);
-//     }
-//   };
-// });
+router.get("/createRoom", (req, res) => {
+  console.log(JSON.stringify(req.query.userName), "body");
+  client.onReady = function () {
+    var data = {
+      userName: `${req.query.userName}`,
+      userDisplayName: `${req.query.userDisplayName}`,
+      userPassword: ` ${req.query.userPassword}`,
+      applicationId: 10464912,
+    };
+    var dataa = {
+      userName: "Gordonybsbs",
+      userDisplayName: "Gordonyhsjs",
+      userPassword: "1234567",
+      applicationId: "10464912",
+    };
+    // Add a new user.
+    try {
+      client.Users.addUser(data)
+        .then((ev) => console.log(ev))
+        .catch((err) => console.log(err, "catch err"), res.send("done"));
+    } catch (e) {
+      console.log("catch", e);
+    }
+  };
+});
 router.get("/", (req, res) => {
   res.send({ hey: "Welcome to Quiver API" });
 });
